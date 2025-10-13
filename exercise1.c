@@ -9,7 +9,6 @@
  */
 
 #include "taylor_sine.h"
-#include <math.h>
 
 double fact(int num) {
     double result = 1.0;
@@ -42,7 +41,7 @@ double taylor_sine(double x, int n) {
             result -= term / fact(power);
         }
     }
-    
+
     return result; // placeholder - replace with your implementation
 }
  // TODO: Implement the Taylor series approximation for sine
