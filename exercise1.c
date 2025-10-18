@@ -19,14 +19,18 @@
  */
 
 double taylor_sine(double x, int n) {
+    double two_pi = 6.283185307179586; //modulo 2pi to increase precision
+    while (x > two_pi) x -= two_pi;
+    while (x < -two_pi) x += two_pi;
+
     double sine_value = 0.0;
-    double term = x;     // First term 
-    int sign = 1;        // Alternates between + and -
+    double term = x;
+    int sign = 1;
 
     for (int k = 1; k <= n; k++) {
         sine_value += sign * term;
         term = term * x * x / ((2 * k) * (2 * k + 1));
-        sign = -sign; // Numerical value
+        sign = -sign;
     }
 
     return sine_value;
