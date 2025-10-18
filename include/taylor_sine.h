@@ -11,6 +11,5 @@
  */
 
 double taylor_sine(double x, int n);
-double fact(int num);
 
 #endif

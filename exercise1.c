@@ -9,22 +9,7 @@
  */
 
 #include "taylor_sine.h"
-
-double fact(int k) {
-    double result = 1.0;
-    for (int i = 2; i <= k; i++) {
-        result *= i;
-    }
-    return result;
-}
-
-double power(double base, int exp) {
-    double result = 1.0;
-    for (int i = 0; i < exp; i++) {
-        result *= base;
-    }
-    return result;
-}
+#include <stdio.h>
 
 /* 
  * Calculate sine using Taylor series approximation
@@ -34,19 +19,34 @@ double power(double base, int exp) {
  */
 
 double taylor_sine(double x, int n) {
-    double result = 0.0;
-    double term;
-    int sign = 1;
+    double sine_value = 0.0;
+    double term = x;     // First term 
+    int sign = 1;        // Alternates between + and -
 
-    for (int i = 0; i < n; i++) {
-        int power = 2 * i + 1;              // 1, 3, 5, 7, ...
-        term = sign * (pow(x, power) / factorial(power));
-        result += term;
-        sign *= -1;                         // alternate between + and -
+    for (int k = 1; k <= n; k++) {
+        sine_value += sign * term;
+        term = term * x * x / ((2 * k) * (2 * k + 1));
+        sign = -sign; // Numerical value
     }
 
-    return result;
+    return sine_value;
 }
  // TODO: Implement the Taylor series approximation for sine
     // Hint: The series is: x - x^3/3! + x^5/5! - x^7/7! + ...
     // Use a loop to calculate n terms of the series
+    
+int main() {
+    double x;
+    int n;
+
+    printf("Enter x (radians): ");
+    scanf("%lf", &x);
+
+    printf("Enter number of terms n: ");
+    scanf("%d", &n);
+
+    double result = taylor_sine(x, n);
+    printf("sin(%f) = %f using %d terms\n", x, result, n);
+
+    return 0;
+}
