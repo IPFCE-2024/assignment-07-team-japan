@@ -34,19 +34,3 @@ double taylor_sine(double x, int n) {
  // TODO: Implement the Taylor series approximation for sine
     // Hint: The series is: x - x^3/3! + x^5/5! - x^7/7! + ...
     // Use a loop to calculate n terms of the series
-    
-int main() {
-    double x;
-    int n;
-
-    printf("Enter x (radians): ");
-    scanf("%lf", &x);
-
-    printf("Enter number of terms n: ");
-    scanf("%d", &n);
-
-    double result = taylor_sine(x, n);
-    printf("sin(%f) = %f using %d terms\n", x, result, n);
-
-    return 0;
-}
