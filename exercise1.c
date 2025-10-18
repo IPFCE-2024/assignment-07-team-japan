@@ -10,11 +10,20 @@
 
 #include "taylor_sine.h"
 
-double fact(int num) {
+double fact(int k) {
     double result = 1.0;
-    for (int i = 0; i <= num; i++) {
+    for (int i = 2; i <= k; i++) {
         result *= i;
     }
+    return result;
+}
+
+double power(double base, int exp) {
+    double result = 1.0;
+    for (int i = 0; i < exp; i++) {
+        result *= base;
+    }
+    return result;
 }
 
 /* 
@@ -23,26 +32,20 @@ double fact(int num) {
  * n: number of terms in the series
  * Returns: approximation of sin(x)
  */
+
 double taylor_sine(double x, int n) {
-   double result = 0.0;
+    double result = 0.0;
+    double term;
+    int sign = 1;
 
-    for (int i = 0; i < n; i++){
-        int power = 2 * i + 1;
-        double term = 1.0;
-
-        for (int j = 0; j < power; j++) {
-            term *= x;
-        }
-
-        if (i % 2 == 0) {
-            result += term / fact(power);
-        }
-        else {
-            result -= term / fact(power);
-        }
+    for (int i = 0; i < n; i++) {
+        int power = 2 * i + 1;              // 1, 3, 5, 7, ...
+        term = sign * (pow(x, power) / factorial(power));
+        result += term;
+        sign *= -1;                         // alternate between + and -
     }
 
-    return result; // placeholder - replace with your implementation
+    return result;
 }
  // TODO: Implement the Taylor series approximation for sine
     // Hint: The series is: x - x^3/3! + x^5/5! - x^7/7! + ...
