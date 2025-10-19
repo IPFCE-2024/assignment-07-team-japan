@@ -13,7 +13,9 @@ int main() {
     scanf("%d", &n);
 
     double result = taylor_sine(x, n);
-    printf("sin(%f) = %f using %d terms\n", x, result, n);
+    printf("sin(%f) by TA     = %f using %d terms\n", x, result, n);
+
+    printf("sin(%f) by math.h = %f", x, sin(x));
 
     return 0;
 }
